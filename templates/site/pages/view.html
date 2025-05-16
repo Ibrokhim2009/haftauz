@@ -1,0 +1,135 @@
+{% extends "site/base.html" %}
+{% load static %}
+{% block content %}
+	<a href="#" class="bigrek"></a>
+	<div class="container wrapper">
+		<div class="longrek"></div>
+		<div class="clearfix"></div>
+
+		<ol class="breadcrumb">
+			<li><a href="{% url 'index' %}">home</a></li>
+			<li><a href="{% url 'category' slug=new.category_id.slug %}">{{ new.category_id }}</a></li>
+			<li class="active">{{ new.title }}</li>
+		</ol>
+		<div class="row">
+			<div class="col-md-8 col-xs-12">
+				<div class="view_img"><img src="{{ new.rasm.url }}" alt=""></div>
+				<div class="news_box view">
+					<div class="view_title">{{ new.title }}</div>
+					<span class="date">{{ new.date|date:'d-m-Y' }}</span>
+					<span class="news_type"><i class="fa fa-eye"></i> {{ new.view }}</span>
+					<div class="view_desc">
+						<strong>
+							{{ new.short_desc }}
+						</strong>
+						<div id="bigfav" class="carousel slide view_slide" data-ride="carousel">
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+									<img src="{{ new.rasm2.url }}" alt="...">
+								</div>
+							</div>
+						</div>
+						<p>
+							{{ new.description }}
+						</p>
+					</div>
+					<ul class="tag">
+						{% for i in new.get_tegs %}
+							<li><a href="{% url 'search'  %}?search={{ i }}">#{{ i }}</a></li>
+						{% endfor %}
+					</ul>
+					<div class="nav_news">
+						<a href="#" class="prev_news text-right">
+							<i class="fa fa-angle-left"></i>
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+						</a>
+						<a href="#" class="next_news">
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+							<i class="fa fa-angle-right"></i>
+						</a>
+						<div class="clearfix"></div>
+					</div>
+					<div class="comment">
+						<div class="title">Комменты</div>
+						<ul>
+							<li>
+								<div class="com_img"><img src="{% static 'img/ava.jpg'%}" alt=""></div>
+								<div class="com_info">
+									<div class="author">Adam Levine</div>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
+										eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
+										montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+										eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+									<div class="date">02.02.2017</div>
+									<hr>
+								</div>
+								<ul class="sub">
+									<li>
+										<div class="com_img"><img src="{% static 'img/ava.jpg'%}" alt=""></div>
+										<div class="com_info">
+											<div class="author">Adam Levine</div>
+											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+												ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
+												dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+												ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
+												quis enim.</p>
+											<div class="date">02.02.2017</div>
+											<hr>
+										</div>
+
+									</li>
+									<li>
+										<div class="com_img"><img src="{% static 'img/ava.jpg'%}" alt=""></div>
+										<div class="com_info">
+											<div class="author">Adam Levine</div>
+											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+												ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
+												dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+												ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
+												quis enim.</p>
+											<div class="date">02.02.2017</div>
+											<hr>
+										</div>
+
+									</li>
+								</ul>
+							</li>
+							<li>
+								<div class="com_img"><img src="{% static 'img/ava.jpg'%}" alt=""></div>
+								<div class="com_info">
+									<div class="author">Adam Levine</div>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
+										eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
+										montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+										eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+									<div class="date">02.02.2017</div>
+									<hr>
+								</div>
+
+							</li>
+							<li>
+								<div class="com_img"><img src="{% static 'img/ava.jpg'%}" alt=""></div>
+								<div class="com_info">
+									<div class="author">Adam Levine</div>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
+										eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
+										montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+										eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+									<div class="date">02.02.2017</div>
+									<hr>
+								</div>
+
+							</li>
+						</ul>
+						<button class="btn add_comment">Добавить комментарий</button>
+						<div class="add_info">Приветствуются интересные и осмысленные комментарии по теме материала.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-12">
+				{% include "site/partials/svejiy.html" %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

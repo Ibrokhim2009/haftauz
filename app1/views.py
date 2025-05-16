@@ -3,19 +3,18 @@ from .models import *
 from django.db.models import Q
 from django.core.paginator import Paginator
 from .forms import ContactForm
-
+from django.conf import settings 
 # Create your views here.
 def index(request):
     categories = Category.objects.filter(is_menu=True)
     news= New.objects.all()
-    
     ctx = {
        'categories': categories,
        'big_new': news[0],
        'all_news': news[1:],
        'svejiy': New.objects.all().order_by('-id')[:8]
     }
-    return render(request, 'pages/index.html',ctx)
+    return render(request, 'site/pages/index.html',ctx)
 def search(request): 
     kalit = request.GET.get('search')
     news_list = New.objects.filter(
@@ -34,7 +33,7 @@ def search(request):
         'page_obj': page_obj,
         'news': page_obj   
     }
-    return render(request, 'pages/search.html', ctx)
+    return render(request, 'site/pages/search.html', ctx)
 def view(request,pk):
    #  kategory = get_list_or_404(Category,slug=slug)
     new = New.objects.get(pk=pk)
@@ -46,7 +45,7 @@ def view(request,pk):
        'new':new
        
     }
-    return render(request, 'pages/view.html',ctx)
+    return render(request, 'site/pages/view.html',ctx)
 def contact(request):
    if request.method == 'POST':
       form = ContactForm(request.POST)
@@ -55,7 +54,7 @@ def contact(request):
    ctx = {
       
    }
-   return render(request, 'pages/contact.html',ctx)
+   return render(request, 'site/pages/contact.html',ctx)
 def category(request,slug):
     categories = Category.objects.filter(is_menu=True)
     kategory = get_object_or_404(Category,slug=slug)
@@ -70,7 +69,7 @@ def category(request,slug):
        'category_new':category_new,
        'page_obj':page_obj,
     }
-    return render(request, 'pages/category.html',ctx)
+    return render(request, 'site/pages/category.html',ctx)
  
  
  
@@ -89,4 +88,4 @@ def page_not_found(request):
    ctx = {
       
    }
-   return render(request, 'pages/404_page.html', ctx) 
+   return render(request, 'site/pages/404_page.html', ctx) 

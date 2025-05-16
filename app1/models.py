@@ -30,6 +30,11 @@ class New(models.Model):
     date = models.DateField(blank=True, null=True)
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
     
+    def save(self, *args, **kwargs):
+        if self.tegs and '#' not in self.tegs:
+            self.tegs = '#' + ' #'.join(self.tegs.split())
+        return super(New,self).save(*args, **kwargs)
+    
     def get_tegs(self):
         return self.tegs.strip('#').split('#')
     

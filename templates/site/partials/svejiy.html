@@ -1,0 +1,47 @@
+{% load static %}
+
+<div class="head_title">Свежие новости</div>
+<div id="listnews" class="carousel slide listnews" data-ride="carousel">
+  <div class="news_box">
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <ul class="list_news">
+          {% for i in svejiy %} {% if forloop.counter < 5 %}
+          <li>
+            <div class="list_img">
+              <img src="{{ i.rasm.url }}" alt="" />
+            </div>
+            <a href="{% url 'view' pk=i.id %}">{{ i.title }}</a>
+            <span class="date">{{i.date|date:'y-m-Y'}}</span>
+            <span class="news_type"
+              ><i class="fa fa-pencil"></i> {{ i.category_id.name }}</span
+            >
+          </li>
+          {% endif %} {% endfor %}
+        </ul>
+      </div>
+      <div class="item">
+        <ul class="list_news">
+          {% for i in svejiy %} {% if forloop.counter > 4 %}
+          <li>
+            <div class="list_img">
+              <img src="{{ i.rasm.url }}" alt="" />
+            </div>
+            <a href="#">{{ i.title }}</a>
+            <span class="date">12.01.2017</span>
+            <span class="news_type"
+              ><i class="fa fa-pencil"></i> {{ i.category_id.name }}</span
+            >
+          </li>
+          {% endif %} {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="indi_box">
+    <ol class="carousel-indicators">
+      <li data-target="#listnews" data-slide-to="0" class="active"></li>
+      <li data-target="#listnews" data-slide-to="1"></li>
+    </ol>
+  </div>
+</div>
